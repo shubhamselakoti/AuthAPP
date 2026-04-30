@@ -74,10 +74,10 @@ export default function SignupPage() {
       const data = await signup(name, email, password);
 
       // Backend returns requiresVerification=true — go to OTP page
-      if (data.requiresVerification) {
-        navigate("/verify-otp", { state: { email: data.email || email } });
-        return;
-      }
+      // if (data.requiresVerification) {
+      //   navigate("/verify-otp", { state: { email: data.email || email } });
+      //   return;
+      // }
 
       // Fallback: if somehow already verified
       saveSession(data.token, data.user);

@@ -4,12 +4,10 @@ const nodemailer = require("nodemailer");
 // For Gmail you need an App Password — see README for setup.
 function createTransporter() {
   return nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
+    service: "gmail",
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
+      pass: process.env.EMAIL_PASS, // App Password, not your real password
     },
   });
 }
@@ -43,17 +41,17 @@ async function sendOTPEmail(toEmail, otpCode, userName) {
 
   
   try {
-    await transporter.sendMail({
-      from: `"AuthApp" <${process.env.EMAIL_USER}>`,
-      to: toEmail,
-      subject: `${otpCode} is your AuthApp verification code`,
-      html,
-    });
+  await transporter.sendMail({
+    from: `"AuthApp" <${process.env.EMAIL_USER}>`,
+    to: toEmail,
+    subject: `${otpCode} is your AuthApp verification code`,
+    html,
+  });
 
-    console.log("✅ OTP email sent to:", toEmail);
-  } catch (err) {
-    console.error("❌ Email failed:", err);
-  }
+  console.log("✅ OTP email sent to:", toEmail);
+} catch (err) {
+  console.error("❌ Email failed:", err);
+}
 }
 
 module.exports = { sendOTPEmail };

@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     otp: {
       code:       { type: String, default: null },

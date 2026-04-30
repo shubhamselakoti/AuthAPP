@@ -67,10 +67,10 @@ export default function LoginPage() {
       const data = await login(email, password);
 
       // Unverified account — backend sent a fresh OTP, redirect to verify
-      if (data.requiresVerification) {
-        navigate("/verify-otp", { state: { email: data.email || email } });
-        return;
-      }
+      // if (data.requiresVerification) {
+      //   navigate("/verify-otp", { state: { email: data.email || email } });
+      //   return;
+      // }
 
       saveSession(data.token, data.user);
       navigate("/dashboard");

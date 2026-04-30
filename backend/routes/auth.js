@@ -73,14 +73,14 @@ router.post("/signup", async (req, res) => {
       email,
       password,
       provider: "local",
-      isVerified: false,
+      isVerified: true,
     });
 
-    await issueOTP(user);
+    // await issueOTP(user);
 
     res.status(201).json({
       message: "Account created. Please check your email for the OTP.",
-      requiresVerification: true,
+      requiresVerification: false,
       email: user.email,
     });
   } catch (err) {
